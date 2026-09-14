@@ -1,3 +1,5 @@
+import projectVideo from '../assets/video/sqeducaplay-movie.mp4';
+
 const projects = [
   {
     title: 'SQEducaPlay',
@@ -41,6 +43,17 @@ export function Projects() {
               className={index === 0 ? 'project-card sqeducaplay-card' : 'project-card'}
             >
               <img className="project-thumb" src={project.image} alt={project.title} />
+              {index === 0 && (
+                <video
+                  className="project-video"
+                  controls
+                  preload="metadata"
+                  aria-label="Demonstração em vídeo do SQEducaPlay"
+                >
+                  <source src={projectVideo} type="video/mp4" />
+                  Seu navegador não suporta a reprodução de vídeo.
+                </video>
+              )}
               <h3>{project.title}</h3>
               <p>{project.description}</p>
               <ul>
