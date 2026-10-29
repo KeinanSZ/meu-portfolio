@@ -1,71 +1,63 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import profileImage from './assets/img/keinan.jpg';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Projects } from './components/Projects';
 
+const skills = ['React', 'TypeScript', 'Dart', 'Python', 'Git', 'Cybersecurity'];
+
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
-    const revealItems = document.querySelectorAll<HTMLElement>('.reveal');
-
-    if (!('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'));
-      return;
-    }
-
+    const items = document.querySelectorAll<HTMLElement>('.reveal');
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 },
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.12 },
     );
-
-    revealItems.forEach((item) => observer.observe(item));
-
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="page-shell">
       <header className="topbar">
-        <div className="brand">Keinan de Souza</div>
-
-        <nav className="nav" aria-label="Menu principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#habilidades">Habilidades</a>
-          <a href="#contato">Contato</a>
+        <a className="brand" href="#inicio" aria-label="Ir para o início">KS<span>.</span></a>
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu">☰</button>
+        <nav className={menuOpen ? 'nav open' : 'nav'} aria-label="Menu principal">
+          <a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a>
+          <a href="#projetos" onClick={() => setMenuOpen(false)}>Projetos</a>
+          <a href="#habilidades" onClick={() => setMenuOpen(false)}>Stack</a>
+          <a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a>
         </nav>
       </header>
 
       <main>
-        <section className="hero">
+        <section id="inicio" className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Desenvolvedor Mobile</p>
-            <h1>Transformo ideias em experiências mobile claras e funcionais.</h1>
-            <p className="lead">
-              Sou Keinan de Souza, estudante de Engenharia de Software apaixonado por desenvolvimento
-              mobile e pela criação de soluções modernas, acessíveis e bem planejadas.
-            </p>
-
+            <div className="status"><span /> Disponível para oportunidades</div>
+            <p className="eyebrow">Software Engineering Student · Developer</p>
+            <h1>Construindo experiências digitais <em>úteis, modernas e seguras.</em></h1>
+            <p className="lead">Sou Keinan de Souza, estudante de Engenharia de Software com foco em desenvolvimento mobile, aplicações web e cybersecurity.</p>
             <div className="actions">
-              <a className="button primary" href="#projetos">
-                Ver projetos
-              </a>
-              <a className="button secondary" href="#contato">
-                Falar comigo
-              </a>
+              <a className="button primary" href="#projetos">Explorar projetos <span>↘</span></a>
+              <a className="button secondary" href="https://github.com/KeinanSZ" target="_blank" rel="noreferrer">GitHub ↗</a>
+            </div>
+            <div className="hero-meta">
+              <span>Rio de Janeiro, Brasil</span>
+              <span>Engenharia de Software</span>
             </div>
           </div>
-
-          <div className="hero-portrait">
-            <img src={profileImage} alt="Keinan de Souza" />
+          <div className="hero-visual">
+            <div className="portrait-glow" />
+            <div className="hero-portrait"><img src={profileImage} alt="Keinan de Souza" /></div>
+            <div className="code-badge"><span>01</span><strong>BUILD.<br/>LEARN.<br/>EVOLVE.</strong></div>
           </div>
         </section>
 
@@ -73,28 +65,18 @@ function App() {
         <Projects />
 
         <section id="habilidades" className="section skills-section reveal">
+          <div className="section-number">03</div>
           <div className="section-heading">
-            <p className="eyebrow">Habilidades</p>
-            <h2>Tecnologias que uso</h2>
+            <p className="eyebrow">Stack & interesses</p>
+            <h2>Ferramentas para transformar<br/>ideias em produto.</h2>
           </div>
-
-          <div className="skill-list" aria-label="Lista de habilidades">
-            <a className="skill-item" href="https://dart.dev/" target="_blank" rel="noreferrer">
-              Dart
-            </a>
-            <a className="skill-item" href="https://www.python.org/" target="_blank" rel="noreferrer">
-              Python
-            </a>
-            <a className="skill-item" href="https://git-scm.com/" target="_blank" rel="noreferrer">
-              Git
-            </a>
+          <div className="skill-list">
+            {skills.map((skill, index) => <div className="skill-item" key={skill}><span>0{index + 1}</span>{skill}</div>)}
           </div>
         </section>
       </main>
-
       <Contact />
     </div>
   );
 }
-
 export default App;
