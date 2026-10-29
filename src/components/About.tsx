@@ -1,29 +1,23 @@
 export function About() {
   return (
-    <div className="about-spotlight">
-      <section id="sobre" className="section about reveal">
-        <div className="section-heading">
-          <p className="eyebrow">Sobre mim</p>
-          <h2>Olá! Eu sou o Keinan de Souza 👋</h2>
-        </div>
-
+    <section id="sobre" className="section about reveal">
+      <div className="section-number">01</div>
+      <div className="section-heading">
+        <p className="eyebrow">Sobre mim</p>
+        <h2>Tecnologia com visão<br/>de quem constrói.</h2>
+      </div>
+      <div className="about-grid">
+        <p className="about-intro">Estudo Engenharia de Software na Universidade de Vassouras e busco minha próxima oportunidade na área de tecnologia.</p>
         <div className="about-copy">
-          <p>
-            Bem-vindo ao meu Portifólio! Sou uma pessoa apaixonada por tecnologia e estudante de
-            Engenharia de Software, buscando unir o pensamento analítico e a experiência de gestão
-            da construção civil com o desenvolvimento de soluções digitais.
-          </p>
-
-          <ul>
-            <li>🎓 Estudante de <strong>Engenharia de Software</strong> pela <strong>Universidade de Vassouras</strong>.</li>
-            <li>💼 Em busca de uma oportunidade de <strong>estágio na área de tecnologia</strong> para desenvolver minhas habilidades e contribuir com projetos relevantes.</li>
-            <li>📱 Apaixonado por <strong>Desenvolvimento Mobile</strong> e <strong>Cybersecurity</strong>, buscando sempre construir soluções acessíveis, seguras e de alto impacto.</li>
-            <li>🏗️ Trago a experiência de gestão em canteiros de obras e elaboração de relatórios técnicos para a estruturação de códigos e arquiteturas eficientes.</li>
-            <li>🎮 Desenvolvedor do <strong>SQEducaPlay</strong>, um projeto de gamificação que une ensino e jogos interativos (apresentado no evento FLIS).</li>
-            <li>💻 Fascinado por high-performance computing, hardware e otimização de sistemas operacionais.</li>
-          </ul>
+          <p>Minha trajetória também passa pela construção civil. A experiência com gestão, planejamento e relatórios técnicos fortaleceu uma forma de pensar estruturada que hoje aplico ao desenvolvimento de software.</p>
+          <p>Tenho interesse especial em desenvolvimento mobile e cybersecurity. Gosto de transformar problemas reais em soluções claras, acessíveis e bem construídas.</p>
+          <div className="about-facts">
+            <div><strong>Software</strong><span>Engenharia</span></div>
+            <div><strong>Mobile</strong><span>Desenvolvimento</span></div>
+            <div><strong>Security</strong><span>Interesse</span></div>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
